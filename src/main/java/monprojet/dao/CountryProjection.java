@@ -1,7 +1,6 @@
 package monprojet.dao;
 
-public interface CountryPopulationProjection {
+public interface CountryProjection {
     String getName();
     Long getPopulation();
-    
 }

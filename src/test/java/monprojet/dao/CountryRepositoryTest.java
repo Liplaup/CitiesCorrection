@@ -2,6 +2,7 @@ package monprojet.dao;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.Test;
@@ -64,20 +65,15 @@ public class CountryRepositoryTest {
     
         assertEquals(expectedPopulation, actualPopulation, "Population of France should be 12");
     }
-        
+
+
     @Test
     public void testGetCountryPopulationList() {
-        List<CountryPopulationProjection> countryPopulationList = countryDAO.getCountryPopulationList();
+        List<CountryProjection> countryPopulationList = countryDAO.getCountryPopulationList();
         assertNotNull(countryPopulationList);
-
-        for (CountryPopulationProjection projection : countryPopulationList) {
+        for (CountryProjection projection : countryPopulationList) {
             System.out.println("Country: " + projection.getName() + ", Population: " + projection.getPopulation());
         }
     }
-    
-    
-    
-
-    
 
 }

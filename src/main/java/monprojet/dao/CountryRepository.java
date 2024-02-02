@@ -11,13 +11,13 @@ import monprojet.entity.Country;
 
 // This will be AUTO IMPLEMENTED by Spring 
 
-public interface CountryRepository extends JpaRepository<Country, Integer> {
+public interface CountryRepository extends JpaRepository<Country, Long> {
     @Query("SELECT SUM(c.population) FROM City c WHERE c.country.id = :countryId")
     Long calculatePopulationByCountryId(@Param("countryId") Long countryId);
     Country findByCode(String code);
 
-    
-    @Query("SELECT new monprojet.dao.CountryPopulationProjection() FROM Country c LEFT JOIN City ci ON c.id = ci.country.id GROUP BY c.name")
-    List<CountryPopulationProjection> getCountryPopulationList();
-}
 
+        // Méthode pour récupérer une liste de paires (nom du pays, population)
+        @Query("SELECT country.name, city.population FROM Country c JOIN c.cities city GROUP BY country.id")
+        List<CountryProjection> getCountryPopulationList();
+    }
