@@ -49,6 +49,34 @@ public class CountryRepositoryTest {
         assertNotNull(population);
         System.out.println("Population for Country ID " + countryId + ": " + population);
     }
+    @Test
+    public void testPopulationOfFranceIs12() {
+        String countryCode = "FR"; // Replace with the actual country code for France
+        Country france = countryDAO.findByCode(countryCode);
+    
+        assertNotNull(france, "France should exist in the database");
+        
+        // Assuming the population of France is 12
+        Long expectedPopulation = 12L;
+    
+        // Convert the Integer to Long before passing it to the method
+        Long actualPopulation = countryDAO.calculatePopulationByCountryId(france.getId().longValue());
+    
+        assertEquals(expectedPopulation, actualPopulation, "Population of France should be 12");
+    }
+        
+    @Test
+    public void testGetCountryPopulationList() {
+        List<CountryPopulationProjection> countryPopulationList = countryDAO.getCountryPopulationList();
+        assertNotNull(countryPopulationList);
+
+        for (CountryPopulationProjection projection : countryPopulationList) {
+            System.out.println("Country: " + projection.getName() + ", Population: " + projection.getPopulation());
+        }
+    }
+    
+    
+    
 
     
 
