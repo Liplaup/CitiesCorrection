@@ -42,5 +42,14 @@ public class CountryRepositoryTest {
         long nombre = countryDAO.count();
         assertEquals(combienDePaysDansLeJeuDeTest, nombre, "On doit trouver 4 pays" );
     }
+    @Test
+    public void testCalculatePopulationByCountryId() {
+        Long countryId = 1L; // Remplace par un country ID existant
+        Long population = countryDAO.calculatePopulationByCountryId(countryId); // Change en countryDAO
+        assertNotNull(population);
+        System.out.println("Population for Country ID " + countryId + ": " + population);
+    }
+
+    
 
 }
